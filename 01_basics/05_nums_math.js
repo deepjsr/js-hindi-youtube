@@ -14,7 +14,7 @@ console.log(hunderes.toLocaleString('en-IN'));
 //*************Maths********************* */
 const val=-4;
 // console.log(Math);
-// console.log(Math.abs(val));//returns negetive to posotove number
+// console.log(Math.abs(val));//returns negetive to positive number
 // console.log(Math.round(5.66));
 // console.log(Math.ceil(5.66));
 // console.log(Math.floor(5.66));
