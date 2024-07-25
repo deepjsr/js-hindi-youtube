@@ -69,3 +69,19 @@ form.addEventListener('submit', (e) => {
   }
 });
 ```
+## Project Three
+
+# Solution code
+```Java Script
+const clock = document.querySelector('#clock');
+const date = document.querySelector('#date');
+const time = new Date();
+date.innerHTML = time.toDateString();
+
+setInterval(() => {
+  const time = new Date();
+  clock.innerHTML = time.toLocaleTimeString();
+  // console.log(time.getTime());
+}, 1000);
+
+```
