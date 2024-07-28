@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API</title>
+    <style>
+        .container {
+            position: absolute;
+            right: 40%;
+            top: 10%;
+        }
+
+        #detailsCard {
+
+            height: 290px;
+            width: 280px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            padding-top: 15px;
+            border: 2px solid saddlebrown;
+        }
+
+        .profilepic {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .profilepic img {
+            height: 100px;
+        }
+
+        .followers {
+            display: flex;
+            position: absolute;
+            top: 62%;
+        }
+
+        .loginName {
+            position: absolute;
+            top: 50%;
+        }
+    </style>
+</head>
+
+<body style="background-color: #212121;">
+    <details style="color: #fff;">
+        <summary>
+            The XMLHttpRequest.readyState property returns the state an XMLHttpRequest client is in. An XHR client
+            exists in one of the following states: </summary>
+        <table border="5">
+            <thead>
+                <tr>
+                    <th>Value</th>
+                    <th>State</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>0</code></td>
+                    <td><code>UNSENT</code></td>
+                    <td>Client has been created. <code>open()</code> not called yet.</td>
+                </tr>
+                <tr>
+                    <td><code>1</code></td>
+                    <td><code>OPENED</code></td>
+                    <td><code>open()</code> has been called.</td>
+                </tr>
+                <tr>
+                    <td><code>2</code></td>
+                    <td><code>HEADERS_RECEIVED</code></td>
+                    <td><code>send()</code> has been called, and headers and status are available.</td>
+                </tr>
+                <tr>
+                    <td><code>3</code></td>
+                    <td><code>LOADING</code></td>
+                    <td>Downloading; <code>responseText</code> holds partial data.</td>
+                </tr>
+                <tr>
+                    <td><code>4</code></td>
+                    <td><code>DONE</code></td>
+                    <td>The operation is complete.</td>
+                </tr>
+            </tbody>
+        </table>
+    </details>
+    <div class="container">
+        <div id="detailsCard">
+            <div class="profilepic"></div>
+            <div class="loginName"></div>
+            <div class="followers"></div>
+        </div>
+    </div>
+</body>
+<script>
+    const followers = document.querySelector('.followers');
+    const profilepic = document.querySelector('.profilepic');
+    const detailsCard = document.querySelector('.loginName');
+
+
+    const requestURL = 'https://api.github.com/users/hiteshchoudhary'
+    let data = null;
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', requestURL);
+    xhr.onreadystatechange = function () {
+        console.log(xhr.readyState);
+        if (xhr.readyState === 4) {
+            data = JSON.parse(this.responseText);//converting to JSON OBJECT
+            console.log(data.avatar_url);
+            followers.innerHTML = `<h1>No. of followers: ${data.followers}</h1>`;
+            profilepic.innerHTML = `<img src=${data.avatar_url}></img>`;
+            detailsCard.innerHTML = `<h1>${data.login}</h1>`;
+            // document.createElement=``
+        }
+    }
+    xhr.send()
+
+    // followers.innerHTML=data.followers;
+</script>
+
+</html>
